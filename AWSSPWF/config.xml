@@ -1,0 +1,60 @@
+<Configuration>
+ 
+    <!-- SharePoint Foundation 2010 Configuration -->
+    <Package Id="sts">
+        <Setting Id="LAUNCHEDFROMSETUPSTS" Value="Yes" />
+    </Package>
+     
+    <!-- SharePoint Server 2010 Configuration -->
+    <Package Id="spswfe">
+        <Setting Id="SETUPCALLED" Value="1" />
+    </Package>
+     
+    <!--
+    Display:
+        Level: None (completely unattended)
+        CompletionNotice: No (I want to continue on once complete)
+        SuppressModal: Yes (I don't want error messages to stop install)
+        NoCancel: Yes (Does nothing since window is not visible)
+        AcceptEula: Yes (doesn't matter because I have the product ID)
+    -->
+    <Display
+        Level="None"
+        CompletionNotice="No"
+        SuppressModal="Yes"
+        NoCancel="No"
+        AcceptEula="Yes"
+    />
+     
+    <!--
+    (Windows Installer) Settings:
+        Setup Type: Clean Install (not an upgrade)
+        Server Role: Application (server is in a farm, not standalone)
+        Using Install Mode: 1 (Basic UI)
+        Setup Reboot: Automatically reboot if needed
+    -->
+    <Setting Id="SETUPTYPE" Value="CLEAN_INSTALL" />
+    <Setting Id="SERVERROLE" Value="APPLICATION" />
+    <Setting Id="USINGINSTALLMODE" Value="1" />
+    <Setting Id="SETUP_REBOOT" Value="AutoIfNeeded" />
+     
+    <!-- SharePoint Server 2010 Enterprise Product Key (Trial) -->
+    <PIDKEY Value="NQTMW-K63MQ-39G6H-B2CH9-FRDWJ" />
+     
+    <!-- Installation Folders. Everything (except the 14 hive) on D: -->
+    <INSTALLLOCATION Value="C:\Program Files\Microsoft Office Servers\14.0" />
+    <DATADIR Value="C:\Program Files\Microsoft Office Servers\Data" />
+     
+    <!--
+    Logging:
+        Type: Verbose (I want it all, because I am not halting on errors)
+        Path: Put it on D: as well
+        Template: Setup-Custom-ConfigXML-YYYYMMDDHHMMSSxxx.txt
+    -->
+    <Logging
+        Type="Verbose"
+        Path="C:\Logs\SharePoint Install Logs"
+        Template="Setup-Custom-ConfigXML-*.txt"
+    />
+ 
+</Configuration>

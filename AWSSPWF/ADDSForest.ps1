@@ -1,0 +1,3 @@
+﻿param([string]$domainname, [string]$netbiosName, [string]$safeModePassword)
+Import-Module ADDSDeployment ;
+Install-ADDSForest -CreateDnsDelegation:$false -SafeModeAdministratorPassword:(ConvertTo-SecureString -String $safeModePassword -AsPlainText -Force) -DomainName $domainname -DatabasePath "C:\Windows\NTDS" -DomainMode "Win2012" -DomainNetbiosName $netbiosName -ForestMode "Win2012" -InstallDns:$true -LogPath "C:\Windows\NTDS" -NoRebootOnCompletion:$false -SysvolPath "C:\Windows\SYSVOL" -Force:$true
